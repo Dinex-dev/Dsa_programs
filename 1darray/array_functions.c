@@ -38,6 +38,7 @@ int main()
 			scanf("%d", &selected_arr);
 			if (!(selected_arr == 1 || selected_arr == 2))
 				continue;
+			--selected_arr;
 		}
 		seperator int arr3[size[0] + size[1]];
 		switch (operator)
@@ -49,29 +50,29 @@ int main()
 			seperator
 				printf("Value to be inserted : ");
 			scanf("%d", &value);
-			for (int i = 0; i < size[selected_arr - 1] - pos + 1; i++)
-				arr[selected_arr - 1][size[selected_arr - 1] - i] = arr[selected_arr - 1][size[selected_arr - 1] - i - 1];
-			arr[selected_arr - 1][pos - 1] = value;
+			for (int i = 0; i < size[selected_arr] - pos + 1; i++)
+				arr[selected_arr][size[selected_arr] - i] = arr[selected_arr][size[selected_arr] - i - 1];
+			arr[selected_arr][pos - 1] = value;
 			break;
 		case 2:
 			printf("\nWhich index do you want to delete : ");
 			int del;
 			scanf("%d", &del);
-			for (int i = del - 1; i < size[selected_arr - 1] - 1; i++)
-				arr[selected_arr - 1][i] = arr[selected_arr - 1][i + 1];
-			arr[selected_arr - 1][size[selected_arr - 1] - 1] = 0;
+			for (int i = del - 1; i < size[selected_arr] - 1; i++)
+				arr[selected_arr][i] = arr[selected_arr][i + 1];
+			arr[selected_arr][size[selected_arr] - 1] = 0;
 			break;
 		case 3:
-			printf("Array %d : \n", selected_arr);
-			for (int i = 0; i < size[selected_arr - 1]; i++)
-				printf("%d\t", arr[selected_arr - 1][i]);
+			printf("Array %d : \n", selected_arr+1);
+			for (int i = 0; i < size[selected_arr]; i++)
+				printf("%d\t", arr[selected_arr][i]);
 			break;
 		case 4:
-			for (int i = 0; i < size[selected_arr - 1] / 2; ++i)
+			for (int i = 0; i < size[selected_arr] / 2; ++i)
 			{
-				int temp = arr[selected_arr - 1][i];
-				arr[selected_arr - 1][i] = arr[selected_arr - 1][size[selected_arr - 1] - i - 1];
-				arr[selected_arr - 1][size[selected_arr - 1] - i - 1] = temp;
+				int temp = arr[selected_arr][i];
+				arr[selected_arr][i] = arr[selected_arr][size[selected_arr] - i - 1];
+				arr[selected_arr][size[selected_arr] - i - 1] = temp;
 			}
 			break;
 		case 5:
