@@ -41,7 +41,7 @@ void delete ()
     struct node *temp = head;
     while (temp->next->next != head)
         temp = temp->next;
-    printf("%d deleted", temp->next->data);
+    printf("\n%d deleted\n", temp->next->data);
     if (head != NULL && head->next != head)
     {
         temp->next = head;
@@ -69,7 +69,9 @@ int main()
             delete ();
             break;
         case 3:
+            printf("\n");
             trav(head);
+            printf("\n");
             break;
         case 0:
             return 0;

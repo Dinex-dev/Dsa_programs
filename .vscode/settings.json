@@ -27,5 +27,36 @@
     "**/.vscode",
     "**/.vscode/**"
   ],
-  "C_Cpp_Runner.useMsvc": false
+  "C_Cpp_Runner.useMsvc": false,
+  "files.associations": {
+    "*.inc": "c",
+    "*.ipp": "c",
+    "bit": "c",
+    "*.tcc": "c",
+    "bitset": "c",
+    "chrono": "c",
+    "complex": "c",
+    "cstdlib": "c",
+    "string": "c",
+    "exception": "c",
+    "memory_resource": "c",
+    "cmath": "c",
+    "functional": "c",
+    "fstream": "c",
+    "iostream": "c",
+    "istream": "c",
+    "mutex": "c",
+    "new": "c",
+    "numeric": "c",
+    "ostream": "c",
+    "ratio": "c",
+    "sstream": "c",
+    "stop_token": "c",
+    "string_view": "c",
+    "tuple": "c",
+    "type_traits": "c",
+    "typeinfo": "c",
+    "utility": "c",
+    "*.rh": "c"
+  }
 }

@@ -1,21 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
-struct node
+
+typedef struct node
 {
     int data;
     struct node *next;
-}*head = NULL, *tail = NULL;
+}node;
+node *head = NULL , *tail = NULL;
 
-void trav(struct node *start)
+void traverse(node *start)
 {
     printf("%d\t", start->data);
     if (start->next)
-        trav(start->next);
+        traverse(start->next);
 }
 
 void insert(int value)
 {
-    struct node *new = (struct node *)malloc(sizeof(struct node));
+    node *new = (node *)malloc(sizeof(node));
     !head?(head=new):(tail->next=new);
     new->data = value;
     new->next = NULL;
@@ -23,11 +25,10 @@ void insert(int value)
 }
 void delete ()
 {
-    struct node *temp = head;
+    node *temp = head;
     while (temp->next != tail)
         temp = temp->next;
-
-    printf("%d deleted\n", tail->data);
+    printf("\n%d deleted\n", tail->data);
     free(tail);
     tail = temp;
     tail->next = NULL;
@@ -50,7 +51,9 @@ int main()
             delete();
             break;
         case 3:
-            trav(head);
+            printf("\n");
+            traverse(head);
+            printf("\n");
             break;
         case 0:
             return 0;

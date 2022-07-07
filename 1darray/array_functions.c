@@ -68,7 +68,7 @@ int main()
 				printf("%d\t", arr[selected_arr][i]);
 			break;
 		case 4:
-			for (int i = 0; i < size[selected_arr] / 2; ++i)
+			for (int i = 0; i < size[selected_arr] / 2; i++)
 			{
 				int temp = arr[selected_arr][i];
 				arr[selected_arr][i] = arr[selected_arr][size[selected_arr] - i - 1];
