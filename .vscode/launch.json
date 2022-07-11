@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/dinex/Documents/VIPS/SEM-2/Dsa/code/Dynamic",
-      "program": "/home/dinex/Documents/VIPS/SEM-2/Dsa/code/Dynamic/build/Debug/outDebug",
+      "cwd": "/home/dinex/Documents/VIPS/SEM-2/Dsa/code/marrix",
+      "program": "/home/dinex/Documents/VIPS/SEM-2/Dsa/code/marrix/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "/usr/bin/gdb",
       "setupCommands": [

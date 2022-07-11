@@ -1,19 +1,37 @@
 #include <stdio.h>
 
-
-int main()
+int sort(int arr[],int size)
 {
-    int location,array[]={1,2,3,4},size=4;
-    printf("Enter the location of the element that you want to delete : \n");
-            scanf("%d", &location);
-            for (int i = location; i < size ; i++)
+    int spam;
+    for (int i=0;i<size-1;i++)
+    {	
+        for (int j=0;j<size-1;j++)
+        {
+            if (arr[j]>arr[j+1])
             {
-                array[i - 1] = array[i];
+                spam=arr[j+1];
+                arr[j+1]=arr[j];
+                arr[j]=spam;
             }
-            for (int i = 0; i < size ; i++)
-            {
-                printf("%d ", array[i]);
-            }
-
+        }
+        printf("\n");
+    }
     return 0;
+}
+int main(){
+    int size=0;
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
+    int array[size];
+    for (int i = 0; i < size ; i++)
+    {
+        printf("Enter the %d element: ", i+1);
+        scanf("%d", &array[i]);
+    }
+    sort(array,size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d \t", array[i]);
+    }
+    
 }

@@ -57,6 +57,11 @@
     "type_traits": "c",
     "typeinfo": "c",
     "utility": "c",
-    "*.rh": "c"
+    "*.rh": "c",
+    "stdlib.h": "c",
+    "stdio.h": "c",
+    "hash_map": "c",
+    "unordered_map": "c",
+    "unordered_set": "c"
   }
 }
