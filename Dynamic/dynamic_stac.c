@@ -16,7 +16,7 @@ int trav(item *start)
     printf("%d\t", start->data);
     if (start->next)
         trav(start->next);
-        return 0;
+    return 0;
 }
 
 void push(int value)
@@ -42,7 +42,7 @@ int main()
             push(val);
             break;
         case 2: 
-            head=head?head->next:head;
+            head?head=head->next:printf("stack empty");
             break;
         case 3:
             trav(head);

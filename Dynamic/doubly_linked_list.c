@@ -41,9 +41,8 @@ int pop(){
         return 0;
     }
     head=tail->prev?head:NULL;
-    tail->next=NULL;
     tail= tail->prev;
-    
+    tail->next=NULL;
     return 1;
 }
 

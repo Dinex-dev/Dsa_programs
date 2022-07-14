@@ -1,37 +1,23 @@
 #include <stdio.h>
-
-int sort(int arr[],int size)
+int swap(int *a, int *b)
 {
-    int spam;
-    for (int i=0;i<size-1;i++)
-    {	
-        for (int j=0;j<size-1;j++)
-        {
-            if (arr[j]>arr[j+1])
-            {
-                spam=arr[j+1];
-                arr[j+1]=arr[j];
-                arr[j]=spam;
-            }
-        }
-        printf("\n");
-    }
+    int temp = *a;
+    *a = *b;
+    *b = temp;
     return 0;
 }
-int main(){
-    int size=0;
-    printf("Enter the size of the array: ");
-    scanf("%d", &size);
-    int array[size];
-    for (int i = 0; i < size ; i++)
+int main()
+{
+    int array[] = {1, 3, 5, 7, 9, 2, 4, 6, 8, 10};
+    for (int i = 0; i < 10; i++)
     {
-        printf("Enter the %d element: ", i+1);
-        scanf("%d", &array[i]);
+        for (int j = 0; j < i; j++)
+        {
+            array[i] > array[j] ? swap(&array[i], &array[j]) : 0;
+        }
     }
-    sort(array,size);
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < 10; i++)
     {
-        printf("%d \t", array[i]);
+        printf("%d ", array[i]);
     }
-    
 }

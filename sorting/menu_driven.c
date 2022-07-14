@@ -8,54 +8,78 @@ int swap(int *a, int *b)
     return 0;
 }
 
-// void merge(int a[], int first, int mid, int last)
-// {
-//     int i = first, j = mid + 1, k = first, b[50];
-//     while (i <= mid && j <= last)
-//     {
-//         if (a[i] <= a[j])
-//             b[k++] = a[i++];
-//         //
-//         else
-//             b[k++] = a[j++];
-//     }
-//     //
-//     // while (i < n1) {
-//     // a[k] = L[i];
-//     // i++;
-//     // k++;
-//     // }
-//     // while (j < n2) {
-//     // a[k] = M[j];
-//     // j++;
-//     // k++;
-//     // }
-//     // while(i>mid?(j <= last):(i < mid))
-//     // b[k++]=i>mid?a[j++]:a[i++];
-//     if (i > mid)
-//     {
-//         while (j <= last)
-//             b[k++] = a[j++];
-//     }
-//     else
-//     {
-//         while (i < mid)
-//             b[k++] = a[i++];
-//     }
-//     for (i = first; i <= last; i++)
-//         a[i] = b[i];
-// }
-
-
-void merge_sort(int arr[], int first, int last)
+void insertionSort(int arr[], int n)
 {
-    
-    if (first < last)
+    int i, key, j;
+    for (i = 1; i < n; i++) {
+        key = arr[i];
+        j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+void merge(int arr[], int l, int m, int r)
+{
+    int i, j, k;
+    int n1 = m - l + 1;
+    int n2 = r - m;
+    // Create temp arrays
+    int L[n1], R[n2];
+    // Copy data to temp array
+    for (i = 0; i < n1; i++)
+        L[i] = arr[l + i];
+    for (j = 0; j < n2; j++)
+        R[j] = arr[m + 1 + j];
+    // Merge the temp arrays
+    i = 0;
+    j = 0;
+    k = l;
+    while (i < n1 && j < n2)
     {
-        int mid = (first + last) / 2;
-        merge_sort(arr, first, mid);
-        merge_sort(arr, mid + 1, last);
-        
+        if (L[i] <= R[j])
+        {
+            arr[k] = L[i];
+            i++;
+        }
+        else
+        {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+    // Copy the remaining elements of L[]
+    while (i < n1)
+    {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+    // Copy the remaining elements of R[]
+    while (j < n2)
+    {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+void mergeSort(int arr[], int l, int r)
+{
+    if (l < r)
+    {
+        // Finding mid element
+        int m = l + (r - l) / 2;
+        // Recursively sorting both the halves
+        mergeSort(arr, l, m);
+        mergeSort(arr, m + 1, r);
+
+        // Merge the array
+        merge(arr, l, m, r);
     }
 }
 
@@ -88,12 +112,10 @@ int main()
                     arr[i] < arr[j] ? 0 : swap(arr + i, arr + j);
             break;
         case 3:
-            for (int i = 0; i < size; i++) // insertion sort
-                for (int j = i - 1; j > 0; j--)
-                    arr[i] < arr[j] ? swap(arr + i, arr + j) : 0;
+                insertionSort(arr, size);
             break;
         case 4:
-            merge_sort(arr, 0, size - 1);
+            mergeSort(arr, 0, size - 1);
             break;
         case 0:
             return 0;
