@@ -4,54 +4,91 @@ typedef struct polynomial
 {
     int coefficient;
     int exponent;
-    struct polynomial *next;    
+    struct polynomial *next;
 } polynomial;
 
-polynomial create_polynomial(int exponent,int coefficient[],void next){
-    polynomial *new = (polynomial *)malloc(sizeof(polynomial));
-    new->coefficient = coefficient[exponent];
-    new->exponent = exponent;
-    new->next = next;
-    return *new;
-}
+int main()
+{
+    polynomial *poly1 = NULL, *poly2 = NULL;
+    int size1, size2;
+    printf("Enter exponent of polynomial 1 : ");
+    scanf("%d", &size1);
+    printf("Enter exponent of polynomial 2 : ");
+    scanf("%d", &size2);
 
-int main(){
-    int n;
-    printf("Enter the number of polynomials: ");
-    scanf("%d",&n);
-    polynomial all_polynomials[n];
-    for(int i=0;i<n;i++){
-        printf("Enter the exponent of polynomial %d: ",i+1);
-        int exponent;
-        scanf("%d",&exponent);
-        int coefficient[exponent];
-        for(int j=0;j<=exponent;j++){
-            printf("Enter the coefficient of x^%d: ",j);
-            scanf("%d",&coefficient[j]);
-        }
-        all_polynomials[i] = create_polynomial(exponent,coefficient);
+    printf("\nEnter values of polynomial 1 \n");
+    for (int i = 0; i < size1; i++)
+    {
+        polynomial *temp = (polynomial *)malloc(sizeof(polynomial));
+        printf("Enter coefficient of X^%d term : ", i);
+        scanf("%d", &temp->coefficient);
+        temp->exponent = i;
+        temp->next = poly1 ? poly1 : NULL;
+        poly1 = temp;
     }
-    printf("Sum of all the polynomials : ");
-    // find greatest exponent of all the polynomials and create a polynomial of that exponent
-    int greatest_exponent = 0;
-    for(int i=0;i<n;i++){
-        if(all_polynomials[i].exponent > greatest_exponent){
-            greatest_exponent = all_polynomials[i].exponent;
-        }
+    
+    printf("\nEnter values of polynomial 2 \n");
+    for (int i = 0; i < size2; i++)
+    {
+        polynomial *temp = (polynomial *)malloc(sizeof(polynomial));
+        printf("Enter coefficient of X^%d term : ", i);
+        scanf("%d", &temp->coefficient);
+        temp->exponent = i;
+        temp->next = poly2 ? poly2 : NULL;
+        poly2 = temp;
     }
-    int sum[greatest_exponent];
-    printf("\n Greatest poly = %d",greatest_exponent);
-    for(int i=greatest_exponent;i>0;i--){
-        sum[i]=0;
-        for(int j=0;j<n;j++){
-            if(all_polynomials[j].exponent == i){
-                sum[i] += all_polynomials[j].coefficient;
-                all_polynomials[j]=*all_polynomials[j].next;
-            }
-            printf("%d",sum[i]);
-        }   
-    }
-    // polynomial sum_polynomial = create_polynomial(greatest_exponent,sum);
+    polynomial *sum = NULL;
+    polynomial *temp1 = poly1, *temp2 = poly2;
+    while (temp1 && temp2)
+    {
+        polynomial *temp = (polynomial *)malloc(sizeof(polynomial));
 
+        if (temp1->exponent > temp2->exponent)
+        {
+            temp->coefficient = temp1->coefficient;
+            temp->exponent = temp1->exponent;
+            temp1 = temp1->next;
+        }
+        else if (temp1->exponent < temp2->exponent)
+        {
+            temp->coefficient = temp2->coefficient;
+            temp->exponent = temp2->exponent;
+            temp2 = temp2->next;
+        }
+        else
+        {
+            temp->coefficient = temp1->coefficient + temp2->coefficient;
+            temp->exponent = temp1->exponent;
+            temp1 = temp1->next;
+            temp2 = temp2->next;
+        }
+        temp->next = sum;
+        sum = temp;
+    }
+    while (temp1)
+    {
+        polynomial *temp = (polynomial *)malloc(sizeof(polynomial));
+        temp->coefficient = temp1->coefficient;
+        temp->exponent = temp1->exponent;
+        temp->next = sum;
+        sum = temp;
+        temp1 = temp1->next;
+    }
+    while (temp2)
+    {
+        polynomial *temp = (polynomial *)malloc(sizeof(polynomial));
+        temp->coefficient = temp2->coefficient;
+        temp->exponent = temp2->exponent;
+        temp->next = sum;
+        sum = temp;
+        temp2 = temp2->next;
+    }
+    printf("Sum of polynomial 1 and polynomial 2 is : ");
+    while (sum)
+    {
+        printf("%dx^%d + ", sum->coefficient, sum->exponent);
+        sum = sum->next;
+    }
+    printf("\n");
     return 0;
-    }
+}
