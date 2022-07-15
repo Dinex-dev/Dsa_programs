@@ -1,42 +1,42 @@
-#include<stdio.h>   
-int main() 
-{ 
-    int S[10][10],m,n,i,k=0,size=0;
-    printf("Enter number of rows in the matrix : ");
-    scanf("%d",&m);
-    printf("Enter number of columns in the matrix : ");
-    scanf("%d",&n);
-    printf("Enter elements in the matrix : ");
-     for (int i = 0; i < m; i++) 
-        for (int j = 0; j < n; j++) 
-            scanf("%d",&S[i][j]);
-    printf("The matrix is \n");
-    for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++) {
-            printf(" %d ",S[i][j]);
-            if (S[i][j] != 0) 
-                size++;
+#include <stdio.h>
+int main()
+{
+    int rows, cols, zero = 0;
+    printf("Enter rows of matrix: ");
+    scanf("%d", &rows);
+    printf("Enter columns of matrix: ");
+    scanf("%d", &cols);
+    int matrix[rows][cols];
+    for (int i = 0; i < rows; i++)
+    {
+        printf("Enter elements of %d' st/nd row: ", i + 1);
+        for (int j = 0; j < cols; j++)
+            scanf("%d", &matrix[i][j]);
+    }
+    printf("\n");
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            if (matrix[i][j] == 0)
+                zero++;
+            printf("%d ", matrix[i][j]);
         }
         printf("\n");
     }
-    int M[3][size]; 
-    
-    for (int i = 0; i < m; i++) 
-        for (int j = 0; j < n; j++) 
-            if (S[i][j] != 0) 
-            { 
-                M[0][k] = i; 
-                M[1][k] = j; 
-                M[2][k] = S[i][j]; 
-                k++; 
-            } 
-    
-    printf("Triplet representation of the matrix is \n");
-    for (int i=0; i<3; i++) 
+    if (zero > (7 / 10) * (rows * cols))// if more than 70% of elements are zero
     { 
-        for (int j=0; j<size; j++) 
-            printf(" %d ", M[i][j]); 
-        printf("\n"); 
-    } 
-    return 0; 
+        printf("Matrix is sparse\n");
+        printf("row \t col \t value\n");
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < cols; j++)
+                if (matrix[i][j] != 0)
+                {
+                    printf("%d\t %d\t %d\n", i, j, matrix[i][j]);
+                }
+    }
+    else
+        printf("Matrix is not sparse\n");
+    
+    return 0;
 }
