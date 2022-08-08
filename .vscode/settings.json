@@ -62,6 +62,7 @@
     "stdio.h": "c",
     "hash_map": "c",
     "unordered_map": "c",
-    "unordered_set": "c"
+    "unordered_set": "c",
+    "random": "c"
   }
 }
